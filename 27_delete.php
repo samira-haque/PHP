@@ -1,0 +1,38 @@
+<?php
+
+    $servername = "localhost";
+    $username = "root";
+    $password = "" ;
+    $database = "dbsamira" ;
+
+    // create a connection
+
+    $conn = mysqli_connect($servername, $username, $password, $database);
+
+
+
+    
+    // die if connection was not successfull
+
+    if(!$conn){
+        die("Sorry we failed to connect: ". mysqli_connect_error());
+    }
+
+    else{
+        echo "connection was successful<br>";
+    }
+
+    $sql = "DELETE FROM `phptrip` WHERE `dest` = 'Russia' LIMIT 3 ";
+    $result = mysqli_query($conn, $sql);
+    $aff = mysqli_affected_rows($conn) ;
+    echo "<br>Number of affected rows: $aff<br>" ;
+
+    if($result){
+        echo "Delete succesfully";
+    }
+
+    else{
+        $err = mysqli_error($conn);
+        echo "Not Delete successfully due to this error --> $err" ;
+
+    }
